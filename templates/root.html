@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <script>
+        function post_cookie() {
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.open('GET', 'cookie?cookie='+document.getElementById('cookie').value, true);
+            httpRequest.send();
+        }
+    </script>
+</head>
+<body style="background-color: aliceblue;font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace; text-align: center">
+<h1 style="font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace">ようこそ</h1>
+<h3>QQ Sports Monitoring System</h3>
+<div>search:<input id="input" style="border: 1px solid; border-radius: 2px;"/>
+    <button onclick="window.location.href='result?id='+document.getElementById('input').value;">go!
+    </button>
+</div>
+<div>cookie:<input id="cookie" style="border: 1px solid; border-radius: 2px;" />
+    <button onclick="post_cookie();">go!</button>
+</div>
+<p style="font-weight: lighter;font-style: italic; font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace; font-size: small;color: cornflowerblue">
+    powered by cocca, the background color is called 'aliceblue'.</p>
+<p style="font-weight: lighter;font-style: italic; font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace; font-size: small;color: cornflowerblue">「どうかあなたも何処かで 泣いていますように」</p>
+<p style="font-weight: lighter;font-style: italic; font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace; font-size: small;color: cornflowerblue">2020.8.2</p>
+
+</body>
+</html>

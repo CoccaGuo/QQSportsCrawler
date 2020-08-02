@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>result page</title>
+    <script src=" https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body style="text-align: center">
+<div id="main" style="width: 600px;height:500px;">无法显示图像</div>
+<script>
+    function getQueryVariable(variable) {
+        const query = window.location.search.substring(1);
+        const vars = query.split("&");
+        for (let i = 0; i < vars.length; i++) {
+            const pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+    const httpRequest = new XMLHttpRequest();
+    var data;
+    httpRequest.open('GET', '/search/?id=' + getQueryVariable("id"), true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                data = JSON.parse(httpRequest.responseText);
+                console.log(data);
+    const myChart = echarts.init(document.getElementById('main'));
+    const dateList = data.map(function (item) {
+        return item[0];
+    });
+    const valueList = data.map(function (item) {
+        return item[1];
+    });
+    option = {
+        // Make gradient line here
+        visualMap: [{
+            show: false,
+            type: 'continuous',
+            seriesIndex: 0,
+            min: 0,
+            max: 400
+        }, {
+            show: false,
+            type: 'continuous',
+            seriesIndex: 1,
+            dimension: 0,
+            min: 0,
+            max: dateList.length - 1
+        }],
+        title: [{
+            left: 'center',
+            text: 'results'
+        }],
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: [{
+            data: dateList
+        }],
+        yAxis: [{
+            splitLine: {show: false}
+        }],
+        grid: [{
+            bottom: '60%'
+        }, {
+            top: '60%'
+        }],
+        series: [{
+            type: 'line',
+            showSymbol: false,
+            data: valueList
+        }]
+    };
+    myChart.setOption(option);
+            }
+        };
+
+</script>
+</body>
+</html>
