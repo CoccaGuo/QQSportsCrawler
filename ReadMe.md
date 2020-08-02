@@ -5,6 +5,7 @@
 
 通过QQ空间的cookies登录（cookies请放在static/cookies下）。
 
+dbinit.py 用于初始化数据库，运行一次即可。
 
 refresh.py 用于每15分钟记录一次步数，启动一次保持运行即可。
 
